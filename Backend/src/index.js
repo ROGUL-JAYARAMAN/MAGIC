@@ -1,6 +1,10 @@
 import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
+import dotenv from "dotenv";
+import connectDB from "./Database/config.js";
+
+dotenv.config();
 
 const app = express();
 
@@ -11,6 +15,9 @@ app.use(cors({
     methods:["POST","GET","PATCH","UPDATE"]
 }))
 
-app.listen(4000,()=>{
+const port = process.env.PORT;
+
+app.listen(port,()=>{
+    connectDB();
     console.log("Backend Initiated");
 })
